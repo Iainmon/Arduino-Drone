@@ -24,20 +24,21 @@ void setup() {
 }
 
 void loop() {
+
+  populateSensorData();
+  valuesToDegrees();
   
   delta_time = (micros() - last_time) / (float)1000000;
-  last_time = micros();  
+  last_time = micros();
+
   x_rot += GyX * delta_time;
   y_rot += GyY * delta_time;
   z_rot += GyZ * delta_time;
- 
-  populateSensorData();
-  valuesToDegrees();
-  Serial.print(" | X = "); Serial.print(GyX);
-  Serial.print(" | Y = "); Serial.print(GyY);
-  Serial.print(" | Z = "); Serial.println(GyZ);
+
+
   
-  //debug();
+  //debugRot(); //values after ratation conversion.
+  //debugRaw(); //values after degree conversion.
   
 }
 
@@ -52,9 +53,9 @@ int intoDeg(int x) {
 
 
 void valuesToDegrees() {
-  GyX = intoDeg(GyX + 34);
-  GyY = intoDeg(GyY + 12);
-  GyZ = intoDeg(GyZ + 12);
+  GyX = intoDeg(GyX);
+  GyY = intoDeg(GyY);
+  GyZ = intoDeg(GyZ);
 }
 
 void populateSensorData() {
@@ -73,9 +74,15 @@ void populateSensorData() {
 
 }
 
-void debug() {
+void debugRot() {
   Serial.print(" | X = "); Serial.print(x_rot);
   Serial.print(" | Y = "); Serial.print(y_rot);
   Serial.print(" | Z = "); Serial.println(z_rot);
+}
+
+void debugRaw() {
+  Serial.print(" | X = "); Serial.print(GyX);
+  Serial.print(" | Y = "); Serial.print(GyY);
+  Serial.print(" | Z = "); Serial.println(GyZ);
 }
 
