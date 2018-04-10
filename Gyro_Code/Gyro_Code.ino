@@ -27,19 +27,17 @@ void loop() {
 
   populateSensorData();
   valuesToDegrees();
-  
+
+
+
+
   delta_time = (micros() - last_time) / (float)1000000;
   last_time = micros();
-
   x_rot += GyX * delta_time;
   y_rot += GyY * delta_time;
   z_rot += GyZ * delta_time;
-
-
-  
-  //debugRot(); //values after ratation conversion.
-  //debugRaw(); //values after degree conversion.
-  
+  //debugRot(); 
+  debugRaw();
 }
 
 
@@ -75,9 +73,9 @@ void populateSensorData() {
 }
 
 void debugRot() {
-  Serial.print(" | X = "); Serial.print(x_rot);
-  Serial.print(" | Y = "); Serial.print(y_rot);
-  Serial.print(" | Z = "); Serial.println(z_rot);
+  Serial.print(" | Xrot = "); Serial.print(x_rot);
+  Serial.print(" | Yrot = "); Serial.print(y_rot);
+  Serial.print(" | Zrot = "); Serial.println(z_rot);
 }
 
 void debugRaw() {
