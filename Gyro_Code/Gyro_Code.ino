@@ -60,10 +60,12 @@ void calibrate(){
 void add_values_to_sum(){
   delta_time = (micros() - last_time) / (float)1000000;
   last_time = micros();
-  x_rot = circle_clamp(x_rot + GyX * delta_time);
-  y_rot = circle_clamp(x_rot + GyY * delta_time);
-  z_rot = circle_clamp(x_rot + GyZ * delta_time);
-  
+  x_rot += GyX * delta_time;
+  //x_rot = circle_clamp(x_rot);
+  y_rot += GyY * delta_time;
+  //y_rot = circle_clamp(y_rot);
+  z_rot += GyZ * delta_time;
+  //z_rot = circle_clamp(z_rot);
 }
 
 float circle_clamp(float input){
